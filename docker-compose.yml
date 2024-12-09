@@ -1,0 +1,60 @@
+services:
+  haproxy:
+    image: haproxy:3.1.0
+    container_name: haproxy
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    ports:
+      - "80:80"
+    networks:
+      - haproxy-network
+    depends_on:
+      - servicea1
+      - servicea2
+      - serviceb1
+      - serviceb2
+    restart: always
+
+  servicea1:
+    build: ./serviceA
+    container_name: servicea1
+    ports:
+      - "8081:8081"                            # Expose port 8081
+    environment:
+      server_port: 8081
+    networks:
+      - haproxy-network
+
+  servicea2:
+    build: ./serviceA
+    container_name: servicea2
+    ports:
+      - "8083:8083"                            # Expose port 8083
+    environment:
+      server_port: 8083
+    networks:
+      - haproxy-network
+
+  serviceb1:
+    build: ./serviceB
+    container_name: serviceb1
+    ports:
+      - "8082:8082"                            # Expose port 8082
+    environment:
+      server_port: 8082
+    networks:
+      - haproxy-network
+
+  serviceb2:
+    build: ./serviceB
+    container_name: serviceb2
+    ports:
+      - "8084:8084"                            # Expose port 8084
+    environment:
+      server_port: 8084
+    networks:
+      - haproxy-network
+
+networks:
+  haproxy-network:
+    external: true
