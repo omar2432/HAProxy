@@ -11,6 +11,7 @@ public class HealthController {
     public ResponseEntity<String> healthCheck() {
         // You could check the health of a database or other services here
         boolean isHealthy = checkServiceHealth();
+        System.out.println("****** /health was called is the service healthy ?? "+isHealthy+" ******");
         if (isHealthy) {
             return ResponseEntity.ok("Service is healthy");
         } else {
