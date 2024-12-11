@@ -10,5 +10,6 @@ $ docker-compose up -d
 
 you can use http://localhost/api/serviceA/greet
 and http://localhost/api/serviceB/data with username omar and password pass123
+and http://localhost:9000/stats for the stats
 
 
