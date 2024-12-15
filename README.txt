@@ -12,4 +12,14 @@ you can use http://localhost/api/serviceA/greet
 and http://localhost/api/serviceB/data with username omar and password pass123
 and http://localhost:9000/stats for the stats
 
+In C:\Windows\System32\drivers\etc\hosts added:
+127.0.0.1 xyz.com
+127.0.0.1 abc.com
+
+with haproxy2.cfg
+you can use:
+http://xyz.com/data
+http://abc.com/data
+http://abc.com/serviceB/data
+
 
